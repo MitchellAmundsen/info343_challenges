@@ -1,2 +1,35 @@
 /* Your stylesheet goes here */
-@import https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
+@import url(https://fonts.googleapis.com/css?family=Raleway:400,300);
+@import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic);
+
+
+body{
+	font-family: 'Lato', 'Helvetica Neue', Helvetica, sans-serif;
+	font-size: 16px;
+	font-weight: 300;
+	background-color: #E9EAEE;
+}
+.heading{
+	font-family: 'Raleway';
+
+}
+.heading > .heading{
+	background-color: #bc6026;
+
+}
+
+@media screen and (min-width: 768px){
+	body{
+		font-size: 20px;
+	}
+	.heading > .heading{
+		text-align: center;
+		padding-bottom: 1em;
+
+	}
+
+}
+svg{
+	font-size: 1em;
+}
