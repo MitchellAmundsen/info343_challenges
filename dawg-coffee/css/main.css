@@ -2,6 +2,7 @@
 @import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
 @import url(https://fonts.googleapis.com/css?family=Raleway:400,300);
 @import url(https://fonts.googleapis.com/css?family=Lato:400,300,300italic);
+@import url(https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css);
 
 
 body{
@@ -10,44 +11,104 @@ body{
 	font-weight: 300;
 	background-color: #E9EAEE;
 }
-.heading{
+
+h1, h2, h3, h4, h5, h6{
 	font-family: 'Raleway';
-
-}
-.heading > .heading{
-	background-color: #bc6026;
-
 }
 
-@media screen and (min-width: 768px){
-	body{
-		font-size: 20px;
-	}
-	.heading > .heading{
-		text-align: center;
-		padding-bottom: 1em;
 
-	}
-	.navbar{
-		background-color: rgba(24, 28, 34, 0.8)
-	}
-
-}
 svg{
-	font-size: 1em;
+	height: 1em;
+	fill: white;
 }
 
-.navbar{
+#headline svg{
+	height: 1.5em;
+	padding-bottom: 1em;
+	fill: #A65300;
+}
+nav{
 	position: absolute;
-	top: 0px;
-	left: 15px;
-	z-index: -1;
+	z-index: 1;
 	background-color: #181c22;
 	color: white;
 	font-size: 16px;
+	display: inline;
 	padding-left: .5em;
-	display: inline-block;
+	padding-right: .5em;
 	font-variant: small-caps;
 	text-decoration: none;
+	width: 100%;
+}
+nav > a{
+	padding: .5em;
+	color: white;
+	left: 15px;
+}
+nav > a:hover{
+	color:#d87e28;
+
+}
+#header{
+	padding: 3em;
+
+}
+#motto{
+	display:none;
+}
+
+#headline{
+	font-style: italic;
+	text-align: center;
+
+}
+
+
+
+@media screen and (min-width: 768px){
+	body{
+		font-size: 16px;
+	}
+	h1, h2, h3, h4, h5, h6 > h1, h2, h3, h4, h5, h6{
+		text-align: center;
+		padding-bottom: 1em;
+	}
+	nav{
+		background-color: rgba(24, 28, 34, 0.8);
+		padding: 1em;
+	}
+	#header{
+		background-image: url("../img/background-sm.jpg");
+		background-repeat: no-repeat;
+		background-size: cover;
+		color: white;
+		text-align: right;
+		min-height: 550px;
+	}
+	#motto{
+		display: initial;
+	}
+}
+
+@media screen and (min-width: 992px){
+	#title{
+		font-size: 4em;
+	}
+	#header{
+		background-image: url("../img/background-md.jpg");
+		background-repeat: no-repeat;
+	}
 	
 }
+
+@media screen and (min-width: 1200px){
+	#header{
+		background-image: url("../img/background-lg.jpg");
+		background-repeat: no-repeat;
+	}
+	
+}
+
+
+
+
