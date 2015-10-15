@@ -29,7 +29,7 @@ svg{
 }
 
 nav{
-	position: absolute;
+	position: fixed;
 	z-index: 1;
 	background-color: #181c22;
 	color: white;
@@ -63,6 +63,7 @@ nav > a:hover{
 	font-style: italic;
 	text-align: center;
 	padding-top: 2em;
+	padding-bottom: 2em;
 
 }
 #headline > p{
@@ -71,13 +72,87 @@ nav > a:hover{
 
 .infosvg{
 	fill: #A65300;
+	height: 2em;
 }
 
 #info{
-	padding-top: 
-	text-align: center;
-	background-color: #dbdce3
+	padding-top: 1em;
+	background-color: #dbdce3;
+	padding-bottom: 1em;
 }
+
+#mappic{
+	border-radius: 5px;
+	padding-top: 1em;
+}
+
+.contact-text{
+	padding-top: .5em;
+}
+
+#hours{
+	padding-bottom: 1em;
+	background-color: #dbdce3;
+}
+
+#map{
+	padding-bottom: 1em;
+	background-color: #dbdce3;
+}
+
+#contact{
+	padding-bottom: 1em;
+	background-color: #dbdce3;
+}
+
+.desc{
+	font-style: italic;
+	list-style-type: none;
+	right: 1em;
+}
+
+.foodname{
+	font-weight: 800;
+	list-style-type: none;
+}
+
+#menutitle{
+	color:#A65300;
+}
+
+#menu > p, #menu > div > p{
+	font-weight: 500;
+}
+
+
+#menu{
+	margin-top: 1em;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+#lady{
+	float: right;
+	max-height: 300px;
+	margin-left: 1em;
+	border-radius: 5px;
+}
+#story{
+	background-color: #dbdce3;
+	padding-top: 1em;
+	padding-bottom: 2em;
+}
+#story>h2{
+	color:#A65300;
+}
+#footer{
+	border-width: 3px;
+	border-color: color:#A65300;
+	border-top: solid;
+	font-size: 12px;
+	padding-top: 1em;
+}
+
 
 @media screen and (min-width: 768px){
 	body{
@@ -107,6 +182,15 @@ nav > a:hover{
 	}
 	#headline{
 		font-size: 1.25em;
+	}
+	#lady{
+		max-height: 400px;
+	}
+	#story>h2{
+		text-align: center;
+	}
+	#rightfooter{
+		text-align: right;
 	}
 }
 
