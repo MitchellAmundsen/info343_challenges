@@ -22,11 +22,12 @@ svg{
 	fill: white;
 }
 
-#headline svg{
+#cup2{
 	height: 1.5em;
-	padding-bottom: 1em;
+	/*padding-bottom: 1em;*/
 	fill: #A65300;
 }
+
 nav{
 	position: absolute;
 	z-index: 1;
@@ -41,7 +42,8 @@ nav{
 	width: 100%;
 }
 nav > a{
-	padding: .5em;
+	padding-left: .5em;
+	padding-right: .5em;
 	color: white;
 	left: 15px;
 }
@@ -50,7 +52,7 @@ nav > a:hover{
 
 }
 #header{
-	padding: 3em;
+	padding-top: 3em;
 
 }
 #motto{
@@ -60,10 +62,22 @@ nav > a:hover{
 #headline{
 	font-style: italic;
 	text-align: center;
+	padding-top: 2em;
 
 }
+#headline > p{
+	padding-top: 1em;
+}
 
+.infosvg{
+	fill: #A65300;
+}
 
+#info{
+	padding-top: 
+	text-align: center;
+	background-color: #dbdce3
+}
 
 @media screen and (min-width: 768px){
 	body{
@@ -87,6 +101,12 @@ nav > a:hover{
 	}
 	#motto{
 		display: initial;
+	}
+	#title{
+		display: initial;
+	}
+	#headline{
+		font-size: 1.25em;
 	}
 }
 
