@@ -108,7 +108,6 @@ nav > a:hover{
 .desc{
 	font-style: italic;
 	list-style-type: none;
-	right: 1em;
 }
 
 .foodname{
@@ -126,7 +125,6 @@ nav > a:hover{
 
 
 #menu{
-	margin-top: 1em;
 	padding-top: 1em;
 	padding-bottom: 1em;
 }
