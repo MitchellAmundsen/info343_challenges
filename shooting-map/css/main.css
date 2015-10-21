@@ -2,3 +2,12 @@
 #map-container{
 	height: 600px;
 }
+
+#break{
+	height: 20px;
+}
+
+#stats{
+	background-color: #C8C8C8;
+	border-top: 3em;
+}

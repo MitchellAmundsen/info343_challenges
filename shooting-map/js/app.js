@@ -16,26 +16,31 @@
 	var armedGroup = L.layerGroup();
 	var unarmedGroup = L.layerGroup();
 
+	var armedArray = [];
+	var unarmedArray = [];
+
 	var dataProcess = function(data){
 		for(var i=0; i<data.length; i++){
 			var current = data[i];
 			var armed = current.armed;
 			
 			if(armed==true){
-				var marker = L.circle([current.lat, current.lng], 700, {
+				var marker = L.circle([current.lat, current.lng], 1000, {
 					color: 'red',
 					fillColor: '#f03',
 					fillOpacity: 0.5
 				});
 				marker.addTo(armedGroup);
+				armedArray.push(current);
 			} 
 			else{
-				var marker = L.circle([current.lat, current.lng], 700, {
+				var marker = L.circle([current.lat, current.lng], 1000, {
 					color: 'blue',
 					fillColor: '#1E90FF',
 					fillOpacity: 0.5
 				});
 				marker.addTo(unarmedGroup);
+				unarmedArray.push(current);
 			}
 		}
 		
@@ -48,6 +53,11 @@
 		}
 
 		L.control.layers(null, overlay, options).addTo(map);
+
+		if(options)
+		// how do you call checkbox for groups (armed unarmed)
+		//popup not working
+
 
 
 	};
