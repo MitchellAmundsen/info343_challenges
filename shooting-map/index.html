@@ -26,13 +26,23 @@
     <div id="break"></div>
 
     <!-- MORE HTML GOES HERE -->
-    <div class="container-fluid" id="stats">
-        <h2 class="container"> Stats </h2>
-        <h4 class="container">Shots Fired: </h4>
-        <h4 class="container">Average Shots Fired: </h4>
-        <h4 class="container">Age:</h4>
-        <h4 class="container">Average Age:</h4>
+    <div id="boxes" class="container-fluid">
+        <input type="checkbox" id = "armed" class="container-fluid"> Armed </input>
+        <div></div>
+        <input type="checkbox" id = "unarmed" class="container-fluid"> Unarmed </input>
 
+    </div>
+
+    <div class="container-fluid" id="stats">
+        <h2 class="container-fluid"> Stats </h2>
+        <h4 class="col-sm-3">Shots Fired: </h4>
+        <h4 class="container-fluid" id ="shots">0</h4>
+        <h4 class="col-sm-3">Average Shots Fired: </h4>
+        <h4 class="container-fluid" id = "shotsavg">0</h4>
+        <h4 class="col-sm-3">Age:</h4>
+        <h4 class="container-fluid" id = "age">0</h4>
+        <h4 class="col-sm-3">Average Age:</h4>
+        <h4 class="container-fluid" id ="ageavg">0</h4>
     </div>
 
     <!-- jQuery library -->

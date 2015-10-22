@@ -26,7 +26,7 @@
 			var armed = current.armed;
 
 			if(armed==true){
-				var marker = L.circle([current.lat, current.lng], 1000, {
+				var marker = L.circle([current.lat, current.lng], 1500, {
 					color: 'red',
 					fillColor: '#f03',
 					fillOpacity: 0.5
@@ -35,7 +35,7 @@
 				armedArray.push(current);
 			} 
 			else{
-				var marker = L.circle([current.lat, current.lng], 1000, {
+				var marker = L.circle([current.lat, current.lng], 1500, {
 					color: 'blue',
 					fillColor: '#1E90FF',
 					fillOpacity: 0.5
@@ -44,29 +44,29 @@
 				unarmedArray.push(current);
 			}
 		}
-		var overlay = {
-			"Armed" : armedGroup,
-			"Unarmed" : unarmedGroup
-		};
-		var options = {
-			collapsed : false
-		}
-
-		L.control.layers(null, overlay, options).addTo(map);
+		//var overlay = {
+		//	"Armed" : armedGroup,
+		//	"Unarmed" : unarmedGroup
+		//};
+		//var options = {
+		//	collapsed : false
+		//}
+//
+		//L.control.layers(null, overlay, options).addTo(map);
 
 		var shotsCount = function(array){
-			var totalShots = 0;
-			for(var i=0; i<array.length; i++){
-				totalShots += array[i].victim.age;
-			}
-			return totalShots;
-		}
-		var ageCount = function(array){
 			var totalAge = 0;
 			for(var i=0; i<array.length; i++){
-				totalAge = array[i].shots;
+				totalAge += array[i].victim.age;
 			}
 			return totalAge;
+		}
+		var ageCount = function(array){
+			var totalShots = 0;
+			for(var i=0; i<array.length; i++){
+				totalShots += array[i].shots;
+			}
+			return totalShots;
 		}
 
 		var shotsArmed = shotsCount(armedArray);
@@ -75,9 +75,41 @@
 		var ageArmed = ageCount(armedArray);
 		var ageUnarmed = ageCount(unarmedArray);
 
-		map.on(layerAdd, function(){
-			
-		})
+		$('#armed').click(function (){
+			if(map.hasLayer(armedGroup)){
+				var shotSave = $('#shots').text();
+				var ageSave = $('#age').text();
+				map.removeLayer(armedGroup);
+				$('#shots').text(shotSave - shotsArmed);
+				$('#age').text(ageSave - ageArmed);
+			}else{
+				var shotSave = $('#shots').text();
+				var ageSave = $('#age').text();
+				map.addLayer(armedGroup);
+				var newShot = shotSave + shotsArmed;
+				var newAge = ageSave + ageArmed;
+				$('#shots').text(newShot);
+				$('#age').text(newAge);
+			}
+		});
+
+		$('#unarmed').click(function (){
+			if(map.hasLayer(unarmedGroup)){
+				var shotSave = $('#shots').text();
+				var ageSave = $('#age').text();
+				map.removeLayer(unarmedGroup);
+				$('#shots').text(shotSave - shotsUnarmed);
+				$('#age').text(ageSave - ageUnarmed);
+			}else{
+				var shotSave = $('#shots').text();
+				var ageSave = $('#age').text();
+				map.addLayer(unarmedGroup);
+				var newShot = shotSave + shotsUnarmed;
+				var newAge = ageSave + ageUnarmed;
+				$('#shots').text(newShot);
+				$('#age').text(newAge);
+			}
+		});
 
 	};
 
