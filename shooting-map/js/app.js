@@ -2,7 +2,8 @@
 
 'use strict';
 
-	var map = L.map('map-container').setView([45.475, -100.348], 4);
+	//creates base map
+	var map = L.map('map-container').setView([40.475, -100.348], 4);
 
 	L.tileLayer('https://api.mapbox.com/v4/mapbox.light/{z}/{x}/{y}.png?access_token=pk.eyJ1IjoibWl0Y2hlbGxhbXVuZHNlbiIsImEiOiJjaWZ5YXZ2ejY1MDNmdHRtMXMxN3Rya3QyIn0.jirD-JAi2WCl4wft_KTKUA', {
 		attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
@@ -15,12 +16,14 @@
 	
 
 	var dataProcess = function(data){
+		//create layer groups
 		var armedGroup = L.layerGroup();
 		var unarmedGroup = L.layerGroup();
 
 		var armedArray = [];
 		var unarmedArray = [];
 
+		// goes through and add markers to appropriate layer groups
 		for(var i=0; i<data.length; i++){
 			var current = data[i];
 			var armed = current.armed;
@@ -54,20 +57,30 @@
 //
 		//L.control.layers(null, overlay, options).addTo(map);
 
-		var shotsCount = function(array){
+		//counts shots
+		var ageCount = function(array){
 			var totalAge = 0;
 			for(var i=0; i<array.length; i++){
-				totalAge += array[i].victim.age;
+				if(array[i].victim != "undefined" && array[i].victim != null){
+					totalAge += array[i].victim.age;
+				}
 			}
 			return totalAge;
 		}
-		var ageCount = function(array){
+		//counts age value
+		var shotsCount = function(array){
 			var totalShots = 0;
 			for(var i=0; i<array.length; i++){
-				totalShots += array[i].shots;
+				if(typeof array[i].shots == "number"){
+					totalShots += array[i].shots;
+				}
+				
 			}
 			return totalShots;
 		}
+		var armedCount = armedArray.length;
+		var unarmedCount = unarmedArray.length;
+		var count = 0;
 
 		var shotsArmed = shotsCount(armedArray);
 		var shotsUnarmed = shotsCount(unarmedArray);
@@ -75,39 +88,41 @@
 		var ageArmed = ageCount(armedArray);
 		var ageUnarmed = ageCount(unarmedArray);
 
+		//adds and removes layer group for armed 
 		$('#armed').click(function (){
 			if(map.hasLayer(armedGroup)){
 				var shotSave = $('#shots').text();
-				var ageSave = $('#age').text();
 				map.removeLayer(armedGroup);
-				$('#shots').text(shotSave - shotsArmed);
-				$('#age').text(ageSave - ageArmed);
+				var newShot = +shotSave - shotsArmed;
+				count = +count - armedCount;
+				$('#shots').text(newShot);
+				$('#shotsavg').text(newAge/count);
 			}else{
 				var shotSave = $('#shots').text();
-				var ageSave = $('#age').text();
 				map.addLayer(armedGroup);
-				var newShot = shotSave + shotsArmed;
-				var newAge = ageSave + ageArmed;
+				var newShot = +shotSave + shotsArmed;
+				count = +count + armedCount;
 				$('#shots').text(newShot);
-				$('#age').text(newAge);
+				$('#shotsavg').text(newShot/count);
 			}
 		});
 
+		//adds and removes layer group for armed
 		$('#unarmed').click(function (){
 			if(map.hasLayer(unarmedGroup)){
 				var shotSave = $('#shots').text();
-				var ageSave = $('#age').text();
 				map.removeLayer(unarmedGroup);
-				$('#shots').text(shotSave - shotsUnarmed);
-				$('#age').text(ageSave - ageUnarmed);
+				count = +count - unarmedCount;
+				var newShot = +shotSave - shotsUnarmed;
+				$('#shots').text(newShot);
+				$('#shotsavg').text(newShot/count);
 			}else{
 				var shotSave = $('#shots').text();
-				var ageSave = $('#age').text();
 				map.addLayer(unarmedGroup);
-				var newShot = shotSave + shotsUnarmed;
-				var newAge = ageSave + ageUnarmed;
+				var newShot = +shotSave + shotsUnarmed;
+				count = +count + unarmedCount;
 				$('#shots').text(newShot);
-				$('#age').text(newAge);
+				$('#shotsavg').text(newShot/count);
 			}
 		});
 
