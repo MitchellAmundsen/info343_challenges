@@ -1,0 +1,37 @@
+@import url(https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css);
+
+body{
+	background-color: black; 
+}
+
+#album{
+	max-height: 250px;
+	border-radius: 5px;
+}
+#albumSpace{
+	padding-top: 5px;
+
+}
+#headline{
+	padding-top: 50px
+}
+#info{
+	padding: .5em;
+	background-color: #888888;
+	border: solid 2px;
+	border-spacing: 4px;
+}
+#title{
+
+}
+#paragraph{
+	
+}
+input[type="text"]{
+	width:  500px;
+	padding: .5em;
+}
+button[type="submit"]{
+	padding: 2px;
+	width: 100px;
+}
