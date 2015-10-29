@@ -49,6 +49,7 @@ button[type="submit"]{
 .textbox{
 	background-color: white;
 	border-radius: 3px;
+	border: solid 1px gray;
 }
 .existing{
 	border: solid 2px;
