@@ -50,6 +50,13 @@ button[type="submit"]{
 	background-color: white;
 	border-radius: 3px;
 }
-#bruh{
+.existing{
 	border: solid 2px;
+	padding: 10px;
+	background-color: #888888;
 }
+.spacing{
+	height: 10px;
+	background-color: white;
+}
+

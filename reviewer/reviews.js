@@ -15,6 +15,7 @@ $(document).ready(function() {
 		path: 'raty-2.7.0/lib/images/',
 		half: true,
 		halfShow: true,
+		readOnly: true
 	});
 		$('#starInput').raty({
 		path: 'raty-2.7.0/lib/images/',
@@ -36,6 +37,8 @@ $(document).ready(function() {
 		review.set('title', box1);
 		review.set('paragraph', box2);
 		review.set('score', num);
+		review.set('votes', 0);
+		review.set('upvotes', 0);
 
 		review.save(null, {
 			success: function(){
@@ -43,6 +46,7 @@ $(document).ready(function() {
 
 		$('#titleInput').val('');
 		$('#paragraphInput').val('');
+		$('#starInput>input').score(0);
 
 		return false;
 	});
@@ -56,7 +60,9 @@ $(document).ready(function() {
 				var currentTitle = current.get('title');
 				var currentParagraph = current.get('paragraph');
 
-				var division = '<div class="container-fluid" id="bruh"></div>'
+				var currentID = '#'+i;
+
+				var division = '<div class="container-fluid existing" id="'+i+'"></div>'
 				var stars = $("<div></div>").raty({
 					path: 'raty-2.7.0/lib/images/',
 					readOnly:true,
@@ -66,9 +72,10 @@ $(document).ready(function() {
 				var paraTag = '<h4 class="container-fluid textbox">'+ currentParagraph + '</h4>';
 
 				$('#previousReviews').append(division);
-				$('#bruh').append(stars);
-				$('#bruh').append(titleTag);
-				$('#bruh').append(paraTag);
+				$(currentID).append(stars);
+				$(currentID).append(titleTag);
+				$(currentID).append(paraTag);
+				$('#previousReviews').append("<div class='spacing'></div>");
 			}
 		}
 	});
