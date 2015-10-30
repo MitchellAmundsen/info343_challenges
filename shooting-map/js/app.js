@@ -12,9 +12,10 @@
 		accessToken: 'pk.eyJ1IjoibWl0Y2hlbGxhbXVuZHNlbiIsImEiOiJjaWZ5YXZ2ejY1MDNmdHRtMXMxN3Rya3QyIn0.jirD-JAi2WCl4wft_KTKUA'
 			}).addTo(map);
 
-
-	
-
+	/*
+	 * this function could be better broken up
+	 * define functions that do stats outside the scope of dataProcess()
+	 */
 	var dataProcess = function(data){
 		//create layer groups
 		var armedGroup = L.layerGroup();
@@ -47,6 +48,7 @@
 				unarmedArray.push(current);
 			}
 		}
+
 		//var overlay = {
 		//	"Armed" : armedGroup,
 		//	"Unarmed" : unarmedGroup
@@ -55,8 +57,11 @@
 		//	collapsed : false
 		//}
 //
-		//L.control.layers(null, overlay, options).addTo(map);
+		L.control.layers(null, overlay, options).addTo(map);
 
+		/*
+	     * counts age not shots
+	     */
 		//counts shots
 		var ageCount = function(array){
 			var totalAge = 0;
@@ -67,6 +72,10 @@
 			}
 			return totalAge;
 		}
+
+		/*
+	     * counts shots not age
+	     */
 		//counts age value
 		var shotsCount = function(array){
 			var totalShots = 0;
@@ -74,7 +83,6 @@
 				if(typeof array[i].shots == "number"){
 					totalShots += array[i].shots;
 				}
-				
 			}
 			return totalShots;
 		}
@@ -87,6 +95,11 @@
 
 		var ageArmed = ageCount(armedArray);
 		var ageUnarmed = ageCount(unarmedArray);
+
+		/*
+		 * needs to reset to zero when unclicked
+		 * 
+		 */
 
 		//adds and removes layer group for armed 
 		$('#armed').click(function (){
@@ -103,9 +116,14 @@
 				var newShot = +shotSave + shotsArmed;
 				count = +count + armedCount;
 				$('#shots').text(newShot);
-				$('#shotsavg').text(newShot/count);
+				$('#shotsavg').text(newShot/count); 
 			}
 		});
+
+		/*
+		 * sets text to NaN if clicked twice
+		 *
+		 */
 
 		//adds and removes layer group for armed
 		$('#unarmed').click(function (){
@@ -115,8 +133,8 @@
 				count = +count - unarmedCount;
 				var newShot = +shotSave - shotsUnarmed;
 				$('#shots').text(newShot);
-				$('#shotsavg').text(newShot/count);
-			}else{
+				$('#shotsavg').text(newShot/count); 
+			} else {
 				var shotSave = $('#shots').text();
 				map.addLayer(unarmedGroup);
 				var newShot = +shotSave + shotsUnarmed;
@@ -125,7 +143,6 @@
 				$('#shotsavg').text(newShot/count);
 			}
 		});
-
 	};
 
 	$.getJSON('data/data.min.json').then(dataProcess);
