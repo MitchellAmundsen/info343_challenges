@@ -13,8 +13,9 @@
     <title>Forest Hills Drive Reviews</title>
 
     <link rel="shortcut icon" href="images/star175.png">
-    <link rel="stylesheet" href="reviewStyle.css"/>
+    <link rel="stylesheet" href="reviewStyle.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="raty-2.7.0/lib/jquery.raty.css" rel="stylesheet">
 
 
 </head>
@@ -23,23 +24,30 @@
     <div class="container-fluid" id="albumSpace">
         <a href="https://www.youtube.com/watch?v=W05dzy1Khic"><img id="album" src="images/forest.jpeg"/></a>
     </div>
-    <div></div>
+    <!-- average stars -->
+    <div id="stars" class="container"></div>
 
     <h4 id="info" class="container-fluid">Forest Hills Drive is the 3rd Album released by J.Cole, a North Carolina rapper. It was announced 3 weeks before release with very little marketing, but debuted at number one on the Billboard 200. The album has been certified gold by the RIAA. </h4>
 
+   <!--  form for inputing data -->
+    <div id="form">
+        <form id="informationForm">
+            <div id="starInput" class="container"></div>
+            <div id="title" class="container">
+                <input class="form-control" id="titleInput" type="text">
+            </div> 
+            <div id="paragraph" class="container">     
+                <textarea class="form-control" id="paragraphInput" type="text"></textarea>
+            </div>
+            <div class="container">
+                <button type="submit" class="container" id="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <br></br>
 
-    <form>
-        <div id="title" class="container">
-            <input type="text">
-        </div> 
-        <div id="paragraph" class="container">     
-            <input type="text">
-        </div>
-        <div class="container">
-            <button type="submit" class="container">Submit</button>
-        </div>
-    </form>
-
+    <!-- area for saved reviews -->
+    <div id="previousReviews"></div>
     
 
 
@@ -51,6 +59,8 @@
     <script src="https://www.parsecdn.com/js/parse-1.6.0.min.js"></script>
 
     <script src="reviews.js"></script>
+
+    <script src="raty-2.7.0/lib/jquery.raty.js"></script>
 
 </body>
 </html>
