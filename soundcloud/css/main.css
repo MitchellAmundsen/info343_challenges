@@ -1,3 +1,46 @@
 body {
   padding:10px;
 }
+#title{
+	padding-bottom: 1em;
+	color: white;
+	top: 2em;
+	font-family: impact;
+}
+.covers{
+	max-height: 5em;
+	border: 1px solid white;
+	border-radius: 5px;
+	left: 2em;
+}
+.songs{
+	padding-top: 1em;
+	padding-left: 10px;
+	padding-bottom: 1em;
+	background-color: #272822;
+	color: white;
+	border: solid 2px white;
+	border-radius: 5px;
+	font-size: 15px;
+}
+#header{
+	border-radius: 5px;
+	background-color: #FE4600;
+	padding-bottom: 1em;
+}
+#form{
+	padding-top: 2em;
+}
+#tracksFound{
+	font-size: 1.5em;
+}
+a{
+	color:inherit;
+}
+.info{
+	font-style: italic;
+	color: #AAAAAA;
+}
+.songlist{
+	font-family: Arial;
+}

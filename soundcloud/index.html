@@ -5,7 +5,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   
-  <title>SoundCloud Example</title>
+  <title>SoundCloud Challenge</title>
   
   <!-- bootstrap -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"/>
@@ -13,28 +13,43 @@
 
   <!-- include libraries -->
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script src="https://connect.soundcloud.com/sdk/sdk-3.0.0.js"></script>
   <script src="js/app.js"></script>
 
 </head>
 <body>
   <div class="container" ng-app="myApp" ng-controller="MyCtrl"> <!-- specify app -->
+    <div class="container" id="header">
+      <div class="row">
+        <img class="col-sm-6" id="logo" src="img/soundcloud_logo_css_by_timpietrusky.png"/>
+        <h1 class="col-sm-6" id ="title"> SoundCloud Challenge </h1>
+      </div>
+    </div>
 
-    <form name="trackForm">
+    <form class="container" id="form" name="trackForm" ng-keyup="getTracks()">
       <div class="form-group">
         <label>SoundCloud search:</label>
         <!-- bind the search term to the controller -->
-        <input name="search" placeholder="Search for a track..." ng-model="query" class="form-control"></input>
+        <input name="search" placeholder="Search for a track..." ng-model="query" class="form-control" required ng-minlength="1"></input>
+        <p ng-show="trackForm.search.$invalid" class="help-block">Start Typing to Begin Search!</p>
       </div>
-      <div class="form-group">
-        <!-- call method on click -->
-        <button class="btn btn-primary" ng-click="getTracks()" type="submit">Submit</button>
-      </div>
-    </form>     
+    </form> 
+
+    <div id="player"></div>    
 
     <div ng-if="tracks"> <!-- only show results if we've done a search -->
-      <p>Tracks found:</p>
+      <p id="tracksFound">Tracks found:</p>
       <ul>
-        <li ng-repeat="track in tracks"><i>{{track.title}}</i> by {{track.user.username}}</li>
+        <li class="container, songs" ng-repeat="track in tracks">
+          <a class="songlist" ng-href={{track.permalink_url}} target="_blank">
+            <i>{{track.title}}</i> by {{track.user.username}}
+          </a>
+          <a ng-href={{track.permalink_url}} target="_blank">
+            <img class="container, covers" ng-src="{{track.artwork_url}}"/>
+          </a>
+          <p class="info">Plays: <i>{{track.playback_count}}</i></p> 
+          <p class="info">Favorites: <i>{{track.favoritings_count}}</i></p>
+        </li>
       </ul>
     </div>
 
