@@ -11,20 +11,14 @@ $(document).ready(function() {
  		 alert("yay! it worked");
 	});
 */
-	$('#stars').raty({
-		path: 'raty-2.7.0/lib/images/',
-		half: true,
-		halfShow: true,
-		readOnly: true
-	});
 		$('#starInput').raty({
 		path: 'raty-2.7.0/lib/images/',
 		half: true,
 		halfShow: true
 	});
-
+	// grabs review object from parse database	
 	var MyClass = Parse.Object.extend("review");
-
+	// submits form ans stores information in parse as review object
 	$('form').submit(function(){
 		var review = new MyClass();
 
@@ -44,6 +38,7 @@ $(document).ready(function() {
 			success: function(){
 		}});
 
+		//resets form fields to empty
 		$('#titleInput').val('');
 		$('#paragraphInput').val('');
 		$('#starInput>input').score(0);
@@ -51,15 +46,22 @@ $(document).ready(function() {
 		return false;
 	});
 
+	//searches parse database for review class
 	var query = new Parse.Query(MyClass);
 	query.find({
 		success: function(results) {
+			var totalScore = 0;
+			var count = 0;
+			// goes through each review and adds html elements to populate page
 			for(var i=0; i<results.length; i++) {
 				var current = results[i];
 				var currentScore = current.get('score');
+				totalScore = totalScore + currentScore;
+				count++;
 				var currentTitle = current.get('title');
 				var currentParagraph = current.get('paragraph');
 
+				//makes different id for each review 
 				var currentID = '#'+i;
 
 				var division = '<div class="container-fluid existing" id="'+i+'"></div>'
@@ -76,7 +78,17 @@ $(document).ready(function() {
 				$(currentID).append(titleTag);
 				$(currentID).append(paraTag);
 				$('#previousReviews').append("<div class='spacing'></div>");
+
 			}
+			//makes overall score using average score from populating count
+			var overallScore = totalScore/count;
+			$('#stars').raty({
+				path: 'raty-2.7.0/lib/images/',
+				half: true,
+				halfShow: true,
+				readOnly: true,
+				score: Math.round(overallScore*2)/2
+			});
 		}
 	});
 
