@@ -21,32 +21,38 @@
   <div class="container" ng-app="myApp" ng-controller="MyCtrl"> <!-- specify app -->
     <div class="container" id="header">
       <div class="row">
+       <!--  large orange header with title and logo -->
         <img class="col-sm-6" id="logo" src="img/soundcloud_logo_css_by_timpietrusky.png"/>
         <h1 class="col-sm-6" id ="title"> SoundCloud Challenge </h1>
       </div>
     </div>
 
+   <!--  form for search -->
+   <!-- search happens on key type -->
     <form class="container" id="form" name="trackForm" ng-keyup="getTracks()">
       <div class="form-group">
         <label>SoundCloud search:</label>
         <!-- bind the search term to the controller -->
         <input name="search" placeholder="Search for a track..." ng-model="query" class="form-control" required ng-minlength="1"></input>
+        <!-- text disappears when a letter is typed -->
         <p ng-show="trackForm.search.$invalid" class="help-block">Start Typing to Begin Search!</p>
       </div>
     </form> 
-
-    <div id="player"></div>    
+   
 
     <div ng-if="tracks"> <!-- only show results if we've done a search -->
       <p id="tracksFound">Tracks found:</p>
       <ul>
         <li class="container, songs" ng-repeat="track in tracks">
+         <!--  links each track to track page -->
           <a class="songlist" ng-href={{track.permalink_url}} target="_blank">
             <i>{{track.title}}</i> by {{track.user.username}}
           </a>
+        <!--   image with link to track page -->
           <a ng-href={{track.permalink_url}} target="_blank">
             <img class="container, covers" ng-src="{{track.artwork_url}}"/>
           </a>
+          <!-- information about each song -->
           <p class="info">Plays: <i>{{track.playback_count}}</i></p> 
           <p class="info">Favorites: <i>{{track.favoritings_count}}</i></p>
         </li>

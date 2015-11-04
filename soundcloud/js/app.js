@@ -6,12 +6,16 @@ var CLIENT_ID = 'd2de86b6f2a8c564b00e1f78421fab9d' //application ID for requests
 var myApp = angular.module('myApp', [])
   .controller('MyCtrl', ['$scope', '$http', function($scope, $http) { 
   
+    /*
+    for future embeded player and changer 
   	$scope.currentSong = '';
   	$scope.playSong = SC.oEmbed('http://soundcloud.com/forss/flickermood', {
   			auto_play: false
 		}).then(function(embed){
   			console.log('oEmbed response: ', embed);
+  			$scope.songPlayer = 
 		});
+*/
 
     //function called to fetch tracks based on the scope's query
     $scope.getTracks = function() {
