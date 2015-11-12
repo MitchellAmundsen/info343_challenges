@@ -151,6 +151,66 @@ nav > a:hover{
 	padding-top: 1em;
 }
 
+.itembar{
+	border: 2px solid black;
+	border-radius: 5px;
+	padding: 1em;
+	background-color: white;
+}
+.orderSpace{
+	background-image: url(../img/coffee-beans-wallpaper-1366x768.jpg);
+	height: 300px;
+}
+#searchDiv{
+	padding: 15px;
+	background-color: gray;
+}
+#orderDiv{
+	padding: 1em;
+	background-color: gray;
+}
+.detailLink{
+	float: right;
+}
+#searchBar{
+	background-color: white;
+	border-radius: 3px;
+	border: solid 1px black;
+	padding: 5px;
+}
+#detailSpace{
+	background-image: url(../img/ws_Coffee_Illustration_2560x1600.jpg);
+	height: 300px;
+	background-size: contain; 
+}
+#beanPic{
+	width: 400px;
+	border-radius: 4px;
+}
+#quanititySelector{
+	float: right;
+}
+#growerPic{
+	height: 300px;
+	border-radius: 4px;
+}
+#grower{
+	margin-top: 3em;
+	background-color: #A1CE7B;
+	padding-bottom: 3em;
+}
+#grower > a{
+	float: right;
+	font-size: 16px;
+	text-decoration: none;
+	color: black;
+	margin-top: 150px;
+	margin-right: 150px;
+	background-color: white;
+	padding: 1em;
+	border-radius: 4px;
+	font-weight: bold;
+}
 
 @media screen and (min-width: 768px){
 	body{
@@ -210,6 +270,7 @@ nav > a:hover{
 	}
 	
 }
+
 
 
 

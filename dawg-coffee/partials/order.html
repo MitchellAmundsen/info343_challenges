@@ -1,1 +1,18 @@
-<!-- The order page goes here -->
+<div class="orderSpace">
+</div>
+
+<div class="container-fluid" id="searchDiv">
+	<div class="form-inline pull-right" id="searchBar">
+		<label for="orderSearch"><i class="fa fa-search"></i></label>
+		<input name="query" placeholder="Search" id="orderSearch" ng-model="searchQuery">
+	</div>
+</div>
+
+<div id="orderDiv">
+	<div class="container-fluid, itembar" ng-repeat="item in products | filter:searchQuery">
+		<h3>{{item.name}}</h3>
+		<p class="desc">{{item.description}}</p>
+		<strong>{{item.price | currency: '$' : 2}}</strong>
+		<a ui-sref="details({id: item.id})" class="detailLink"><button type="button">Details</button></a>
+	</div>
+</div>

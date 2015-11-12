@@ -1,0 +1,31 @@
+
+<div id="detailSpace">
+</div>
+
+<div class="container" id="beanDetail">
+	<h2 class="container">{{item.name}} Details</h2>
+	<p>{{item.description}}</p> 
+	<br></br>
+	<img id="beanPic" src="{{item.image}}"/>
+
+	<form name="productForm" id="quanititySelector">
+		<div class= "form-group form-inline">
+			<h4>{{item.price | currency: '$' : 2}}/pound</h4>
+			<br></br>
+			<label for="quanitity">Quanitity:</label>
+			<select name="quanitity" id="quantity" class="form-control" ng-model="quantity" ng-options="item for item in quantities">
+			</select>
+			<select name="blend" id="blend" class="form-control" ng-model="blend" ng-options="item for item in blends"></select>
+		</div>
+		<button type="submit" class="btn btn-primary" ng-click="saveItem(item, quantity)">Add to Cart</button>
+	</form>
+
+</div>
+
+<div class="container-fluid" id="grower">
+	<h3>Grower: {{item.grower.name}}</h3>
+	<p>{{item.grower.description}}</p>
+	<br></br>
+	<img id="growerPic" src="{{item.grower.image}}"/>
+	<a href="{{item.grower.externalUrl}}">Link to Grower</a>
+</div>
