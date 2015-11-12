@@ -8,12 +8,12 @@
 	<br></br>
 	<img id="beanPic" src="{{item.image}}"/>
 
-	<form name="productForm" id="quanititySelector">
+	<form name="productForm" id="quantitySelector">
 		<div class= "form-group form-inline">
 			<h4>{{item.price | currency: '$' : 2}}/pound</h4>
 			<br></br>
-			<label for="quanitity">Quanitity:</label>
-			<select name="quanitity" id="quantity" class="form-control" ng-model="quantity" ng-options="item for item in quantities">
+			<label for="quantity">Quantity:</label>
+			<select name="quantity" id="quantity" class="form-control" ng-model="quantity" ng-options="item for item in quantities">
 			</select>
 			<select name="blend" id="blend" class="form-control" ng-model="blend" ng-options="item for item in blends"></select>
 		</div>

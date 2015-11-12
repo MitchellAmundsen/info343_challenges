@@ -5,8 +5,19 @@
 	<div class="container-fluid, orderBar" ng-repeat="item in currentCart">
 		<p class="container, beanTitle">{{item.bean.name}} <em class="typeFont">({{item.grind}})</em></p>
 		<p class="container, amountCart"> {{item.amount}}</p>
+		<div id="addSpace" class="container">
+			<button type="button" ng-click="add($index)">Add</button>
+			<button type="button" ng-click="subtract($index)">Subtract</button>
+		</div>
 		<br></br>
 		<button type="button" class="btn btn-primary" ng-click="remove($index)">REMOVE</button>
-		<p class="container, amountCart"> {{item.cost}}</p>
+		<p class="container, amountCart"> {{item.cost | currency: '$' : 2}}</p>
+	</div>
+	<div class="container-fluid">
+		<h4 class="totalCost"> Total Cost: </h4>
+		<br></br>
+		<h3 class="totalCost">{{totally | currency: '$' : 2}}</h3>
+		<br></br>
+		<button type="button" class="btn btn-primary" id="submitButton" ng-click="submit()">Submit</button>
 	</div>
 </div>

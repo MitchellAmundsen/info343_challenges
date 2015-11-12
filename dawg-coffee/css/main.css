@@ -187,7 +187,7 @@ nav > a:hover{
 	width: 400px;
 	border-radius: 4px;
 }
-#quanititySelector{
+#quantitySelector{
 	float: right;
 }
 #growerPic{
@@ -231,6 +231,18 @@ nav > a:hover{
 }
 .typeFont{
 	color:#CACACA;
+}
+.totalCost{
+	float: right;
+	color: white;
+	font-weight: bold;
+}
+#submitButton{
+	display: inline-block;
+}
+#addSpace{
+	left: 15px;
+	float: right;
 }
 
 @media screen and (min-width: 768px){

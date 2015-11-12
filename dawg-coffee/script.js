@@ -47,11 +47,16 @@ angular.module('CoffeeApp', ['ngSanitize', 'ui.router', 'ui.bootstrap'])
 		}, true)[0];
 	});
 
-	$scope.saveItem = function(item, quantity, grind){
-		item.quantity = $scope.quantities.indexOf(quantity);
-		var tempCost = item.price * quantity;
-		cartService.saveItem(item, quantity, grind, tempCost);
+	$scope.saveItem = function(item, quantity, blend){
+		var quantityCurrent = $scope.quantities.indexOf(quantity) + 1;
+		var costCurrent = quantityCurrent * item.price;
+		var grindIndex = $scope.blends.indexOf(blend);
+		var grindCurrent = $scope.blends[grindIndex];
+		cartService.saveItem(item, quantityCurrent, grindCurrent, costCurrent);
 		console.log("saving beans");
+		$scope.quantity = 1;
+		$scope.blend = "Whole Bean";
+
 	}
 
 
@@ -61,35 +66,47 @@ angular.module('CoffeeApp', ['ngSanitize', 'ui.router', 'ui.bootstrap'])
 	$scope.currentCart = cartService.list;
 
 	$scope.add = function(num){
-		if(currentCart[num].quantity < 11){
-			currentCart[num].quantity++;
+		$scope.itemNum = $scope.currentCart[num];
+		if($scope.itemNum.amount < 11){
+			$scope.itemNum.amount++;
+			$scope.itemNum.cost = $scope.itemNum.cost + $scope.itemNum.bean.price;
 			cartService.updateStorage();
 		}
 	}
 	$scope.subtract = function(num){
-		if(currentCart[num].quantity>1){
-			currentCart[num].quantity--;
+		$scope.itemNum = $scope.currentCart[num];
+		if($scope.itemNum.amount > 1){
+			$scope.itemNum.amount--;
+			$scope.itemNum.cost = $scope.itemNum.cost - $scope.itemNum.bean.price;
 			cartService.updateStorage();
 		}
 	}
 	$scope.total = function(){
 		var totalCount = 0;
-		for(var i=0; i <currentCart.length; i++){
-			totalCount = totalCount + currentCart[i].quantity;
+		for(var i=0; i < $scope.currentCart.length; i++){
+			totalCount = totalCount + $scope.currentCart[i].cost;
 		}
+		console.log(totalCount);
 		return totalCount;
 	}
 	$scope.remove = function(num){
-		currentCart.splice(num, 1);
+		$scope.currentCart.splice(num, 1);
 		cartService.updateStorage();
-		total();
+		console.log("remove before total");
+		$scope.totally = $scope.total();
 	}
 	$scope.submit = function(){
 		console.log("order submitted");
 		window.alert("order submitted");
-		currentCart = [];
+		cartService.list=[];
+		cartService.updateStorage();
+		$scope.totally = $scope.total();
+		location.reload();
 
 	}
+
+	$scope.totally = $scope.total();
+
 }])
 
 .factory('cartService', function(){
@@ -110,8 +127,9 @@ angular.module('CoffeeApp', ['ngSanitize', 'ui.router', 'ui.bootstrap'])
 		localStorage.setItem("saveCart", angular.toJson(currentCart.list));
 	};
 
-	var updateStorage = function(){
+	currentCart.updateStorage = function(){
 		localStorage.setItem("saveCart", angular.toJson(currentCart.list));
+		console.log("removed");
 	}
 
 	return currentCart;
