@@ -33,7 +33,7 @@ angular.module('CoffeeApp', ['ngSanitize', 'ui.router', 'ui.bootstrap'])
 }])
 
 .controller('detailsCtrl', ['$scope','$http', '$stateParams', '$filter', 'cartService', function($scope, $http, $stateParams, $filter, cartService){
-	$scope.currentCart = cartService.currentCart;
+	$scope.currentCart = cartService.list;
 
 	$scope.quantities = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 	$scope.quantity = 1;
@@ -49,7 +49,7 @@ angular.module('CoffeeApp', ['ngSanitize', 'ui.router', 'ui.bootstrap'])
 
 	$scope.saveItem = function(item, quantity, grind){
 		item.quantity = $scope.quantities.indexOf(quantity);
-		var tempCost = item.cost * quantity;
+		var tempCost = item.price * quantity;
 		cartService.saveItem(item, quantity, grind, tempCost);
 		console.log("saving beans");
 	}
@@ -58,7 +58,7 @@ angular.module('CoffeeApp', ['ngSanitize', 'ui.router', 'ui.bootstrap'])
 }])
 
 .controller('cartCtrl', ['$scope', '$http', 'cartService', function($scope, $http, cartService){
-	$scope.currentCart = cartService.currentCart;
+	$scope.currentCart = cartService.list;
 
 	$scope.add = function(num){
 		if(currentCart[num].quantity < 11){
@@ -90,11 +90,7 @@ angular.module('CoffeeApp', ['ngSanitize', 'ui.router', 'ui.bootstrap'])
 		currentCart = [];
 
 	}
-
-
 }])
-
-
 
 .factory('cartService', function(){
 	var currentCart = {};

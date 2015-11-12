@@ -1,10 +1,12 @@
 <div class="orderSpace">
 </div>
 
-<div id="cartDiv">
+<div id="orderDiv">
 	<div class="container-fluid, orderBar" ng-repeat="item in currentCart">
-		<h3>{{item.name}}</h3>
-		<p> TEST </p>
+		<p class="container, beanTitle">{{item.bean.name}} <em class="typeFont">({{item.grind}})</em></p>
+		<p class="container, amountCart"> {{item.amount}}</p>
+		<br></br>
+		<button type="button" class="btn btn-primary" ng-click="remove($index)">REMOVE</button>
+		<p class="container, amountCart"> {{item.cost}}</p>
 	</div>
 </div>
-<p> TEST </p>

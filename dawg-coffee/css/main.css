@@ -211,6 +211,27 @@ nav > a:hover{
 	border-radius: 4px;
 	font-weight: bold;
 }
+.beanTitle{
+	float: left;
+	font-size: 18px;
+	font-weight: bold;
+	color: black;
+}
+.orderBar{
+	border: 2px solid white;
+	padding: 1em;
+	border-radius: 3px;
+	margin-bottom: 1em;
+}
+.amountCart{
+	background-color: gray;
+	color: white;
+	float: right;
+	font-weight: bold;
+}
+.typeFont{
+	color:#CACACA;
+}
 
 @media screen and (min-width: 768px){
 	body{
